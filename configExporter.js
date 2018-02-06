@@ -80,13 +80,25 @@ function read_and_export() {
     http.request(options, function (res) {
         res.setEncoding('utf8');
         res.on('data', function (data) {
-        export_to_file(data)
+          export_to_file(data)
         });
-        res.on('errro', function(error){
+        res.on('error', function(error){
 	  console.log('an error occured: ' + error)
  	})
     }).end();
 };
 
+const handleArgs = function(){
+  const args = process.argv.slice(2)
+  for (i in args){
+    const arg = args[i]
+    if (arg === '--host'){
+      i++
+      options.host = args[i]
+    }
+  }
+  console.log('Effiective Parameters: : ' + JSON.stringify(options, null, 4))
+}
+handleArgs()
 read_and_export()
 // EOF
