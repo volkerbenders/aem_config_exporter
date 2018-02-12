@@ -102,7 +102,11 @@ const handleArgs = function(){
     if (arg === '--host'){
       i++
       options.host = args[i]
+    } else if (arg === '--port'){
+      i++
+      options.port = args[i]
     }
+
   }
   console.log('Effiective Parameters: : ' + JSON.stringify(options, null, 4))
 }
