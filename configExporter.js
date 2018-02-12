@@ -32,16 +32,23 @@ var sanitize = function(input){
 // https://stackoverflow.com/questions/10645994/node-js-how-to-format-a-date-string-in-utc
 //
 var buildFileName = function(){
+  var pad = function(input){
+    var output = input
+    if (input < 9){
+      output = '0'+output
+    }
+    return output
+  }
   var now = new Date()
   var date = now.getFullYear()
   date += datetime_delimiter
-  date += now.getMonth()+1
+  date += pad(now.getMonth()+1)
   date += datetime_delimiter
-  date += now.getDate()
+  date += pad(now.getDate())
   date += datetime_delimiter
-  date += now.getHours()
+  date += pad(now.getHours())
   date += datetime_delimiter
-  date += now.getMinutes()
+  date += pad(now.getMinutes())
   date += '_aem_osgi_configurations.csv'
 
   return date
